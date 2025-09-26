@@ -20,3 +20,12 @@ inline fun <T> Iterable<T>.filterList(isSuitable: (T) -> Boolean): List<T> {
     }
     return filterList
 }
+
+inline fun <T, R> T.myLet(block: (T) -> R): R { // аналог функции let()
+    return block(this) // возвращает объект, указанный последним явно
+}
+
+inline fun <T> T.myAlso(operation: (T) -> Unit): T { // аналог функции also()
+    operation(this)
+    return this // по умолчанию возвращает объект, с которым работала, п.э. не надо ничего указывать явно
+}
