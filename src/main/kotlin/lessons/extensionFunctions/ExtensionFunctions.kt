@@ -22,10 +22,19 @@ inline fun <T> Iterable<T>.filterList(isSuitable: (T) -> Boolean): List<T> {
 }
 
 inline fun <T, R> T.myLet(block: (T) -> R): R { // аналог функции let()
-    return block(this) // возвращает объект, указанный последним явно
+    return block(this) // возвращает объект, указанный последним явно или результат операции
 }
 
 inline fun <T> T.myAlso(operation: (T) -> Unit): T { // аналог функции also()
     operation(this)
     return this // по умолчанию возвращает объект, с которым работала, п.э. не надо ничего указывать явно
+}
+
+inline fun <T> T.myApply(operation: T.() -> Unit): T { // аналог функции apply()
+    operation()
+    return this // по умолчанию возвращает объект, с которым работала, п.э. не надо ничего указывать явно
+}
+
+inline fun <T, R> myWith(r: T, operation:T.() -> R): R { // аналог функции with() (сама не сообразила :/)
+    return r.operation()
 }
