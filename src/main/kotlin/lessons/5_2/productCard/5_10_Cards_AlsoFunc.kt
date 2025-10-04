@@ -14,6 +14,6 @@ fun main() {
         .also { println("Трансформируем в строку") }
         .transformElement { "${it.id} - ${it.category} - ${it.size} - ${it.color}\n" }
         .myAlso { println("Выводим на печать") }
-        .forEach { print(it) }
+        .forEach(::println ) // ссылка на метод
 }
 
